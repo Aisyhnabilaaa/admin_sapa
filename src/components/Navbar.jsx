@@ -48,7 +48,7 @@ const Navbar = () => {
                         <Link to="/" className="text-3xl animate-bounce" aria-label="Beranda">
                             🌸
                         </Link>
-                        <h1 className="text-2xl font-extrabold tracking-widest text-sky-800 drop-shadow">SAPA</h1>
+                        <h1 className="text-2xl font-extrabold tracking-widest text-sky-800 drop-shadow">SAPA - Sahabat Perempuan dan Anak</h1>
                         </div>
                         <ul
                             className={`fixed ${menuActive} top-1/2 -translate-y-1/2 flex flex-col gap-4 px-8 py-6 rounded-xl shadow-2xl shadow-pink-200 bg-white/90 font-bold text-sky-800 transition-all duration-300

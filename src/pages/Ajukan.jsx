@@ -15,7 +15,7 @@ const Ajukan = () => {
 
   // Ambil data dari backend saat halaman dimuat
   useEffect(() => {
-    fetch("http://localhost:5000/api/pengaduan/semua")
+    fetch("https://backendsapa-production.up.railway.app/api/pengaduan/semua")
       .then((res) => res.json())
       .then((data) => {
         const dataDenganTanggal = data.map((item) => ({
@@ -35,7 +35,7 @@ const Ajukan = () => {
 
   const confirmHapus = async () => {
     try {
-      await fetch(`http://localhost:5000/api/pengaduan/${hapusId}`, {
+      await fetch(`https://backendsapa-production.up.railway.app/api/pengaduan/${hapusId}`, {
         method: "DELETE",
       });
 
