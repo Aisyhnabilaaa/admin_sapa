@@ -1,5 +1,3 @@
-import React from "react";
-
 const Panduan = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-blue-100 to-blue-200 flex items-center justify-center py-10">
@@ -50,17 +48,6 @@ const Panduan = () => {
           </li>
         </ol>
       </div>
-      <style>
-        {`
-          .animate-fade-in-up {
-            animation: fadeInUp 1s;
-          }
-          @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px);}
-            to { opacity: 1; transform: translateY(0);}
-          }
-        `}
-      </style>
     </div>
   );
 };

@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+const links = [
+    { to: "/", label: "Panel Pengaduan" },
+    { to: "/panduan", label: "Panduan" },
+];
 
 const Navbar = () => {
     const [show, setShow] = useState(false);
     const [scroll, setScroll] = useState(false);
-    const location = useLocation();
 
     const handleClick = () => {
-        setShow(!show);
+        setShow((prev) => !prev);
     };
 
-    let menuActive = show ? "left-0" : "-left-full";
+    const menuActive = show ? "left-0" : "-left-full";
 
     useEffect(() => {
         const handleScroll = () => {
@@ -29,12 +33,7 @@ const Navbar = () => {
         };
     }, []);
 
-    // Hide navbar on login/register page
-    // if (location.pathname === "/login" || location.pathname === "/register") {
-    //     return null;
-    // }
-
-    let scrollActive = scroll
+    const scrollActive = scroll
         ? "py-3 bg-gradient-to-r from-pink-300 via-pink-200 to-sky-200 shadow-lg border-b border-pink-200"
         : "py-6 bg-gradient-to-r from-pink-200 via-pink-100 to-sky-100";
 
@@ -54,38 +53,16 @@ const Navbar = () => {
                             className={`fixed ${menuActive} top-1/2 -translate-y-1/2 flex flex-col gap-4 px-8 py-6 rounded-xl shadow-2xl shadow-pink-200 bg-white/90 font-bold text-sky-800 transition-all duration-300
                             md:static md:flex-row md:shadow-none md:bg-transparent md:w-auto md:h-full md:translate-y-0 md:text-sky-800 md:p-0 md:m-0 md:transition-none lg:gap-12`}
                         >
-                        {/* <li>
-                            <Link
-                                to="/"
-                                className="font-semibold transition-all duration-200 hover:bg-pink-200 hover:text-sky-900 rounded-full px-5 py-2 shadow hover:shadow-lg"
-                            >
-                                Beranda
-                            </Link>
-                        </li> */}
-                                                <li>
-                            <Link
-                                to="/"
-                                className="font-semibold transition-all duration-200 hover:bg-pink-200 hover:text-sky-900 rounded-full px-5 py-2 shadow hover:shadow-lg"
-                            >
-                                Panel Pengaduan
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/panduan"
-                                className="font-semibold transition-all duration-200 hover:bg-pink-200 hover:text-sky-900 rounded-full px-5 py-2 shadow hover:shadow-lg"
-                            >
-                                Panduan
-                            </Link>
-                        </li>
-                            {/* <li className="md:hidden">
+                        {links.map(({ to, label }) => (
+                            <li key={to}>
                                 <Link
-                                    to="/login"
-                                    className="bg-sky-800 px-5 py-2 rounded-full text-white font-bold hover:bg-sky-700 transition-all duration-200 shadow"
+                                    to={to}
+                                    className="font-semibold transition-all duration-200 hover:bg-pink-200 hover:text-sky-900 rounded-full px-5 py-2 shadow hover:shadow-lg"
                                 >
-                                    Login
+                                    {label}
                                 </Link>
-                            </li> */}
+                            </li>
+                        ))}
                             <li className="md:hidden">
                                 <Link
                                     to="/register"
@@ -95,20 +72,6 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         </ul>
-                        {/* <div className="hidden md:flex items-center gap-2">
-                            <Link
-                                to="/login"
-                                className="bg-sky-800 px-5 py-2 rounded-full text-white font-bold hover:bg-sky-700 transition-all duration-200 shadow"
-                            >
-                                Login
-                            </Link>
-                            <Link
-                                to="/register"
-                                className="bg-pink-500 px-5 py-2 rounded-full text-white font-bold hover:bg-pink-600 transition-all duration-200 shadow"
-                            >
-                                Register
-                            </Link>
-                        </div> */}
                         <button
                             className="md:hidden ml-4 text-3xl text-sky-800 focus:outline-none transition-all"
                             onClick={handleClick}

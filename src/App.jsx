@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Beranda from "./pages/Beranda";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,7 +11,6 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        {/* <Route path="/" element={<Beranda />} /> */}
         <Route path="/" element={<Ajukan />} />
         <Route path="/panduan" element={<Panduan />} />
         <Route path="/tentang" element={<Tentang />} />
