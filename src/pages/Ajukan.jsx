@@ -1,41 +1,33 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { API_URL } from "../config";
 
 const Ajukan = () => {
   const [pengaduan, setPengaduan] = useState([]);
   const [detail, setDetail] = useState(null);
   const [hapusId, setHapusId] = useState(null);
 
-
   const [dibacaIds, setDibacaIds] = useState(() => {
     const saved = localStorage.getItem("dibacaPengaduan");
     return saved ? JSON.parse(saved) : [];
   });
-  
-
 
   // Ambil data dari backend saat halaman dimuat
   useEffect(() => {
-    fetch("https://backendsapa-production.up.railway.app/api/pengaduan/semua")
+    fetch(`${API_URL}/pengaduan/semua`)
       .then((res) => res.json())
       .then((data) => {
         const dataDenganTanggal = data.map((item) => ({
           ...item,
           tanggal: new Date(item.createdAt).toISOString().split("T")[0],
-          telepon: item.noTelepon || "-", // sesuaikan key
         }));
         setPengaduan(dataDenganTanggal);
       })
       .catch((err) => console.error("Gagal mengambil data:", err));
   }, []);
 
-
-  const handleHapus = (id) => {
-    setHapusId(id);
-  };
-
   const confirmHapus = async () => {
     try {
-      await fetch(`https://backendsapa-production.up.railway.app/api/pengaduan/${hapusId}`, {
+      await fetch(`${API_URL}/pengaduan/${hapusId}`, {
         method: "DELETE",
       });
 
@@ -175,7 +167,7 @@ const handleDetail = (item) => {
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-600 text-white rounded px-3 py-0.5 text-xs font-semibold"
-                      onClick={() => handleHapus(item.id)}
+                      onClick={() => setHapusId(item.id)}
                     >
                       Hapus
                     </button>
