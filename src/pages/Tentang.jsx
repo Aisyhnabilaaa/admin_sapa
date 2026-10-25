@@ -1,5 +1,3 @@
-import React from "react";
-
 const creators = [
   {
     name: "Syafa'at Ramadhan",
